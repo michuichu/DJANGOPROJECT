@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<h1>DETAILS</h1>
+
+<div class="container" style="margin-bottom:100px;">
+    <div class="row">
+        <div class=" col-md-6 mt-5" >
+            <img src="{{p.image.url}}" class="img-top" alt="..." height="80%" width="80%">
+        </div>
+        <div class=" col-md-6 bg-light mt-5 ">
+            <h2 class="card-title" style="text-transform:uppercase;"><b>{{p.name}}</b></h2><br>
+            <h3>PRICE:<span class="text-primary">{{p.price}}</span></h3>
+            <h3>DESCRIPTION:</h3>
+            <p style="text-align:justify">{{p.description}}</p>
+
+            {% if p.stock <= 0 %}
+                <h2>Out of stock</h2>
+            {% else %}
+                 <a href="{% url 'cart:add_cart' p.id %}" class="btn btn-success">ADD TO CART</a>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
